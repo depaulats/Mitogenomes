@@ -1,4 +1,5 @@
 #Usage: python gbex_tranlation.py sequence.gb
+#Sequence headers will start, after '>', with 'locus' then 'gene'; 'gene' between '@' and "_' symbols to ease GREP later on, example '>NC_010171@COX1_'
 
 import sys, os
 from Bio import GenBank, SeqIO
@@ -19,8 +20,6 @@ for seq_record in SeqIO.parse(input_handle, "genbank") :
                    seq_record.name,
                    seq_feature.qualifiers['gene'][0],
                    seq_feature.qualifiers['translation'][0]))
-
-#Headers will start with '>' then 'locus' then '@' then 'gene' then '_', example '>NC_010171@COX1_'
 
 output_handle.close()
 input_handle.close()
