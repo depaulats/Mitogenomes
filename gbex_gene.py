@@ -1,4 +1,5 @@
 #Usage: python gbex_gene.py sequence.gb
+#Do not work with 'locus_tag'
 #Sequence headers will start, after '>', with 'locus' then 'gene'; 'gene' between '@' and "_' symbols to ease GREP later on, example '>NC_010171@COX1_'
 
 import sys, os
