@@ -1,8 +1,11 @@
+# Create and moe to a working directory (for ease of use) in the root of driver C:
+mkdir /mnt/c/Ubuntu
+cd /mnt/c/Ubuntu
+
 # Installing Miniconda
 wget https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86_64.sh
 bash Miniconda3-py310_23.3.1-0-Linux-x86_64.sh
 rm Miniconda3-py310_23.3.1-0-Linux-x86_64.sh
-
 
 # Installing sequence manipulation programs at <base>
 conda install -c bioconda seqkit
@@ -32,9 +35,10 @@ conda create -n megahit
 conda activate megahit
 
 ## Download, decompress, and rename folder of packaes for mapping reads
-wget https://github.com/BioInfoTools/BBMap/releases/download/v35.85/BBMap_35.85.tar.gz -O /mnt/c/Ubuntu/
-tar xzvf /mnt/c/Ubuntu/BBMap_35.85.tar.gz
-mv BBMap_35.85 bbmap
+## Make sure you are in the working directory (cd /mnt/c/Ubuntu)
+wget https://github.com/BioInfoTools/BBMap/releases/download/v35.85/BBMap_35.85.tar.gz
+tar xzvf BBMap_35.85.tar.gz
+rm BBMap_35.85.tar.gz
 
 ## Java JDK to run BBMap
 conda install -c bioconda java-jdk
