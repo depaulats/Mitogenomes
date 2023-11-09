@@ -1,7 +1,3 @@
-# Create and moe to a working directory (for ease of use) in the root of driver C:
-mkdir /mnt/c/Ubuntu
-cd /mnt/c/Ubuntu
-
 # Installing Miniconda
 wget https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86_64.sh
 bash Miniconda3-py310_23.3.1-0-Linux-x86_64.sh
@@ -30,18 +26,9 @@ conda install -c bioconda trimmomatic
 # Deactivating previous environment, returning to <base>
 conda deactivate
 
-# Creating an environment, activating it, and installing packeages at <megahit>
+# Creating an environment, activating it, and installing packaages at <megahit>
 conda create -n megahit
 conda activate megahit
-
-## Download, decompress, and rename folder of packaes for mapping reads
-## Make sure you are in the working directory (cd /mnt/c/Ubuntu)
-wget https://github.com/BioInfoTools/BBMap/releases/download/v35.85/BBMap_35.85.tar.gz
-tar xzvf BBMap_35.85.tar.gz
-rm BBMap_35.85.tar.gz
-
-## Java JDK to run BBMap
-conda install -c bioconda java-jdk
 
 ## Packages for assembly of (mapped) reads
 conda install -c bioconda megahit
@@ -70,10 +57,18 @@ conda install -c bioconda genericrepeatfinder
 conda deactivate
 
 # Downloading other packages for NGS analysis
-## Mapping of reads. Downloading and extracting BBMap to </mnt/c/Ubuntu/>
+## Create and move to a working directory (for ease of use) in the root of driver C:
+mkdir /mnt/c/Ubuntu
+cd /mnt/c/Ubuntu
+
+## Mapping of reads 
+## Downloading and extracting BBMap to the working directory
 wget https://github.com/BioInfoTools/BBMap/releases/download/v35.85/BBMap_35.85.tar.gz
 tar -zxvf BBMap_35.85.tar.gz -C /mnt/c/Ubuntu/
 rm BBMap_35.85.tar.gz
 
+## Installing Java JDK to run BBMap in a environment of choice, such as <megahit>
+conda activate megahit
+conda install -c bioconda java-jdk
 
 
