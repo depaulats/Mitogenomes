@@ -20,7 +20,10 @@ trimmomatic PE -threads 8 -phred33 \
   /mnt/c/Ubuntu/Sample_folder/Sample_file_R1_unpaired.fastq.gz \
   /mnt/c/Ubuntu/Sample_folder/Sample_file_R2_paired.fastq.gz \
   /mnt/c/Ubuntu/Sample_folder/Sample_file_R2_unpaired.fastq.gz \
-  ILLUMINACLIP:/mnt/c/Ubuntu/Trimmomatic/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:50
+  ILLUMINACLIP:/mnt/c/Ubuntu/Trimmomatic/TruSeq3-PE-2.fa:2:30:10 \
+  LEADING:3 TRAILING:3 \
+  SLIDINGWINDOW:4:20 \
+  MINLEN:50
 
 # Mapping reads
 ## If needed, deactivate current environment
