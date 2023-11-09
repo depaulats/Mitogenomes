@@ -28,9 +28,18 @@ conda install -c bioconda trimmomatic
 conda deactivate
 
 # Creating an environment, activating it, and installing packeages at <megahit>
-## Packages for assembly of (mapped) reads
 conda create -n megahit
 conda activate megahit
+
+## Download, decompress, and rename folder of packaes for mapping reads
+wget https://github.com/BioInfoTools/BBMap/releases/download/v35.85/BBMap_35.85.tar.gz -O /mnt/c/Ubuntu/
+tar xzvf /mnt/c/Ubuntu/BBMap_35.85.tar.gz
+mv BBMap_35.85 bbmap
+
+## Java JDK to run BBMap
+conda install -c bioconda java-jdk
+
+## Packages for assembly of (mapped) reads
 conda install -c bioconda megahit
 
 # Deactivating previous environment, returning to <base>
