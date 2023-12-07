@@ -151,14 +151,17 @@ seqkit seq genes/gb_rns_fix.fa -w 0 > genes/gb_rns_set.fa
 $ seqkit concat genes/*_set.fa > gb_all_genes.fa
 
 # The final alignment will be retrieved after renaming the headers, removing the list of genes
-$ sed '/^>/ s/ .*$//g' gb_all_genes.fa > gb_all_final.fas
+$ sed '/^>/ s/ .*$//g' gb_all_genes.fa > gb_all_accession.fas
 
 # VERY IMPORTANT! The AA and DNA partitions must be defined manually.
 # Retrieve lenght of the individual genes for partition definition
 for i in genes/*_set.fa; do seqkit fx2tab -l -n $i > $i'-len'; done
 for i in genes/*_set.fa-len; do head -n 1 $i >> gb_genes_lenght.txt ; done
 
-#Run RAxML-NG to recover the best-scoring ML tree with Bootstrap support
+# Rename the sequences in the final fasta files using a list in another file
+seqkit replace -p "(.+)" -r '{kv}' -k gb_names.txt gb_all_accession.fas > gb_all_final.fas
+
+# Run RAxML-NG to recover the best-scoring ML tree with Bootstrap support
 $ /mnt/f/Ubuntu/raxml-ng/raxml-ng --msa gb_all_final.fas --msa-format FASTA --seed 12345 --model cat_partitions.txt --all --bs-trees autoMRE{500} --bs-metric TBE
 
 # You can remove the temporary files in the 'genes' folder now
