@@ -51,7 +51,7 @@ grep "@ND1_" -A 1 --no-group-separator gb_all.faa > genes/gb_ND1.fa
 grep "@ND2_" -A 1 --no-group-separator gb_all.faa > genes/gb_ND2.fa
 grep "@ND3_" -A 1 --no-group-separator gb_all.faa > genes/gb_ND3.fa
 grep "@ND4_" -A 1 --no-group-separator gb_all.faa > genes/gb_ND4.fa
-grep "@ND4_" -A 1 --no-group-separator gb_all.faa > genes/gb_ND4L.fa
+grep "@ND4L_" -A 1 --no-group-separator gb_all.faa > genes/gb_ND4L.fa
 grep "@ND5_" -A 1 --no-group-separator gb_all.faa > genes/gb_ND5.fa
 grep "@ND6_" -A 1 --no-group-separator gb_all.faa > genes/gb_ND6.fa
 grep "@rnl_" -A 1 --no-group-separator gb_all.fas > genes/gb_rnl.fa
@@ -98,7 +98,6 @@ Gblocks genes/gb_ND1_align.fa -t=p -b5=a
 Gblocks genes/gb_ND2_align.fa -t=p -b5=a
 Gblocks genes/gb_ND3_align.fa -t=p -b5=a
 Gblocks genes/gb_ND4_align.fa -t=p -b5=a
-Gblocks genes/gb_ND4_align.fa -t=p -b5=a
 Gblocks genes/gb_ND4L_align.fa -t=p -b5=a
 Gblocks genes/gb_ND5_align.fa -t=p -b5=a
 Gblocks genes/gb_ND6_align.fa -t=p -b5=a
@@ -136,6 +135,7 @@ seqkit seq genes/gb_ATP9_fix.fa -w 0 > genes/gb_ATP9_set.fa
 seqkit seq genes/gb_COX1_fix.fa -w 0 > genes/gb_COX1_set.fa
 seqkit seq genes/gb_COX2_fix.fa -w 0 > genes/gb_COX2_set.fa
 seqkit seq genes/gb_COX3_fix.fa -w 0 > genes/gb_COX3_set.fa
+seqkit seq genes/gb_CYTB_fix.fa -w 0 > genes/gb_CYTB_set.fa
 seqkit seq genes/gb_ND1_fix.fa -w 0 > genes/gb_ND1_set.fa
 seqkit seq genes/gb_ND2_fix.fa -w 0 > genes/gb_ND2_set.fa
 seqkit seq genes/gb_ND3_fix.fa -w 0 > genes/gb_ND3_set.fa
