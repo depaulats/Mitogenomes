@@ -324,16 +324,13 @@ unzip raxml-ng_v1.2.1_linux_x86_64.zip -d /mnt/c/Ubuntu/
 rm raxml-ng_v1.2.1_linux_x86_64.zip
 ```
 
-Create a text file to hold model and partition data (*e.g.*, cat_partitions.txt). The file present two partitions:
-- Protein coding genes (PCGs), using the model `mtZOA+G10+FO`, ranging from `1` to `3830` bp; and
-- Ribosomal RNAs (rRNAs), using the model `GTR+G10+FO`, ranging from `3831` to `6877` bp.
-
-- Using pair-end sequences (PE), 8 threads (-threads 8), quality scores Phred+33 (-phred33);
-- Replace sequence file names and locations on the R1 and R2 sequence files and corresponding paired and unpaired output files;The code below, t
+Create a text file to hold model and partition data (*e.g.*, cat_partitions.txt). For instance, the file could present data two partitions:
+- Protein coding genes (`PCGs`), for amino acid data, using the model `mtZOA+G10+FO`, ranging from `1` to `3830` bp; and
+- Ribosomal RNAs (`rRNAs`), for nucleotide data, using the model `GTR+G10+FO`, ranging from `3831` to `6877` bp.
 
 **IMPORTANT**: Refer to the [RAxML-NG Wiki](https://github.com/amkozlov/raxml-ng/wiki) to specify the evolutionary models.
 
-**IMPORTANT**: Refer to the file holding length data of the individual alignments (e.g., gb_genes_lenght.txt) to set partition sizes.
+**IMPORTANT**: Refer to the file holding length data of the individual alignments (*e.g.*, gb_genes_lenght.txt) to set partition sizes.
 
 ```
 echo 'mtZOA+G10+FO, PCGs = 1-3830' > cat_partitions.txt
