@@ -6,7 +6,7 @@
 \
 Move into the working folder, for instance:
 ```
-cd /mnt/f/Ubuntu/MT_GB
+cd /mnt/c/Ubuntu/MT_GB
 ```
 
 ## If you have already individual Genbank files...
@@ -63,13 +63,14 @@ python gbex_tranlation.py gb_all.gb
 Extract DNA sequences from rRNA features in Genbank (gb/gbk) files using the Python script [gbex_rrnaseq.py](https://github.com/depaulats/Mitogenomes/blob/main/gbex_rrnaseq.py).
 python gbex_rrnaseq.py gb_all.gb
 
+
+# Splitting data for individual gene aligment
+
 \
 Create a folder to hold temporary files (*e.g.*, genes) but dont move to it, staying in the working folder set above. 
 ```
 mkdir genes
 ```
-
-# Splitting data for individual gene aligment
 
 \
 Retrieve sequences from specific genes into individual files. 
@@ -295,6 +296,14 @@ separated by a tab, for instance `XX000000  XX000000_Genus_epitheton`
 seqkit replace -p "(.+)" -r '{kv}' -k gb_names.txt gb_all_accession.fas > gb_all_final.fas
 ```
 
+\
+Now you retrieved the final matrix, it is safe to remove the temporary files in the 'genes' folder.
+
+**IMPORTANT**: You can always generate them again starting from [here](#splitting-data-for-individual-gene-aligment).
+```
+rm -rv genes/
+```
+
 # Reconstructing a phylogenetic tree
 
 
@@ -305,17 +314,37 @@ conda activate raxml
 conda install bioconda::raxml-ng
 ```
 
-Or download the pre-compiled binary directly for the GiHub page.
+Or download the pre-compiled binary from the GiHub page. 
+
+**IMPORTANT**: Check the version of the file before running the code.
+
+```
 wget https://github.com/amkozlov/raxml-ng/releases/download/1.2.1/raxml-ng_v1.2.1_linux_x86_64.zip
-
-\
-Run RAxML-NG to recover the best-scoring ML tree with Bootstrap support
-```
-/mnt/f/Ubuntu/raxml-ng/raxml-ng --msa gb_all_final.fas --msa-format FASTA --seed 12345 --model cat_partitions.txt --all --bs-trees autoMRE{500} --bs-metric TBE
+unzip raxml-ng_v1.2.1_linux_x86_64.zip -d /mnt/c/Ubuntu/
+rm raxml-ng_v1.2.1_linux_x86_64.zip
 ```
 
+Create a text file to hold model and partition data (*e.g.*, cat_partitions.txt). The file present two partitions:
+- Protein coding genes (PCGs), using the model `mtZOA+G10+FO`, ranging from `1` to `3830` bp; and
+- Ribosomal RNAs (rRNAs), using the model `GTR+G10+FO`, ranging from `3831` to `6877` bp.
+
+- Using pair-end sequences (PE), 8 threads (-threads 8), quality scores Phred+33 (-phred33);
+- Replace sequence file names and locations on the R1 and R2 sequence files and corresponding paired and unpaired output files;The code below, t
+
+**IMPORTANT**: Refer to the [RAxML-NG Wiki](https://github.com/amkozlov/raxml-ng/wiki) to specify the evolutionary models.
+
+**IMPORTANT**: Refer to the file holding length data of the individual alignments (e.g., gb_genes_lenght.txt) to set partition sizes.
+
+```
+echo 'mtZOA+G10+FO, PCGs = 1-3830' > cat_partitions.txt
+echo 'GTR+G10+FO, rRNAs = 3831-6877' >> cat_partitions.txt
+```
+
 \
-You can remove the temporary files in the 'genes' folder now
+Run RAxML-NG to recover the best-scoring ML tree with Bootstrap support. 
+**IMPORTANT**: The code below is running the binary from the downloaded file. In order to run the binary installed via Conda, remove the path `/mnt/c/Ubuntu/` from the code.
 ```
-rm -rv genes/
+/mnt/c/Ubuntu/raxml-ng/raxml-ng --msa gb_all_final.fas --msa-format FASTA --seed 12345 --model cat_partitions.txt --all --bs-trees autoMRE{500} --bs-metric TBE
 ```
+
+
