@@ -1,4 +1,13 @@
-# Extracting biological data from Genbank files
+# Phylogenomics
+
+\
+Below you can find commands and scripts to conduct a phylogenomic analysis.
+
+The examples are based on mitochondrial DNA data from marine sponges as reported on Genbank files. 
+
+Some modifications and/or adaptations might be needed if working and a different subject.
+
+## Extracting biological data from Genbank files
 
 \
 **IMPORTANT**: If you have the softwares in different Conda environments, activate them accordingly.
@@ -9,7 +18,7 @@ Move into the working folder, for instance:
 cd /mnt/c/Ubuntu/MT_GB
 ```
 
-## If you have already individual Genbank files...
+### If you have already individual Genbank files...
 
 \
 Compile a list of all Genbank (gb/gbk) files in the folder.
@@ -38,7 +47,7 @@ cat *.faa > GB_all.faa
 cat *.fas > GB_all.fas
 ```
 
-## If you don't have the Genbank files yet...
+### If you don't have the Genbank files yet...
 
 \
 Download all Genbank entries at once using [Batch Entrez](https://www.ncbi.nlm.nih.gov/sites/batchentrez)
@@ -64,7 +73,7 @@ Extract DNA sequences from rRNA features in Genbank (gb/gbk) files using the Pyt
 python gbex_rrnaseq.py gb_all.gb
 
 
-# Splitting data for individual gene aligment
+## Splitting data for individual gene aligment
 
 \
 Create a folder to hold temporary files (*e.g.*, genes) but dont move to it, staying in the working folder set above. 
@@ -106,7 +115,7 @@ And run it using the ***bash*** command.
 bash gb01_grep.sh
 ```
 
-# Multiple sequence alignment (MSA)
+## Multiple sequence alignment (MSA)
 
 If you dont have the [MAFFT](https://mafft.cbrc.jp/alignment/software/) sofware installed, install it using Conda on its own enviroment.
 ```
@@ -148,7 +157,7 @@ And run it using the ***bash*** command.
 bash gb02_mafft.sh
 ```
 
-# Removing ambiguously aligned positions from MSA (optional)
+## Removing ambiguously aligned positions from MSA (optional)
 
 \
 If you dont have the [Gblocks](https://github.com/atmaivancevic/Gblocks) sofware installed, install it using Conda on the <mafft> enviroment.
@@ -177,8 +186,7 @@ Gblocks genes/gb_rnl_align.fa -t=d -b5=a
 Gblocks genes/gb_rns_align.fa -t=d -b5=a
 ```
 
- ($ bash gb03_gblocks.sh)
-
+\
 If you prefer, create a bash shell (*e.g.*, gb03_gblocks.sh) from the code above using the ***echo*** command, as follow:
 ```
 echo 'Gblocks genes/gb_ATP6_align.fa -t=p -b5=a' > gb03_gblocks.sh
@@ -191,7 +199,7 @@ And run it using the ***bash*** command.
 bash gb03_gblocks.sh
 ```
 
-# Concatenating individual aligments into a single matrix
+## Concatenating individual aligments into a single matrix
 
 \
 Fix the sequences by removing empty spaces and renaming the headers; headers must be ">ID gene" for concatenation later on.
@@ -304,7 +312,7 @@ Now you retrieved the final matrix, it is safe to remove the temporary files in 
 rm -rv genes/
 ```
 
-# Reconstructing a phylogenetic tree
+## Reconstructing a phylogenetic tree
 
 
 If you dont have the [RAxML-NG](https://github.com/amkozlov/raxml-ng/) sofware installed, install it using Conda on its own enviroment.
