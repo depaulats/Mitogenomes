@@ -312,7 +312,7 @@ Now you retrieved the final matrix, it is safe to remove the temporary files in 
 rm -rv genes/
 ```
 
-## Reconstructing a phylogenetic tree
+## Reconstructing a phylogenetic tree using the Maximum Likelihood method
 
 
 If you dont have the [RAxML-NG](https://github.com/amkozlov/raxml-ng/) sofware installed, install it using Conda on its own enviroment.
@@ -346,10 +346,38 @@ echo 'GTR+G10+FO, rRNAs = 3831-6877' >> cat_partitions.txt
 ```
 
 \
-Run RAxML-NG to recover the best-scoring ML tree with Bootstrap support. 
+Run RAxML-NG using the settings:
+- Complete analysis, *i.e.*, one command (`--all`) to recover the best-scoring tree from 20 independent inferences, and support values from bootstrap replicates;
+- MSA, or matrix, (`--msa`) is in the file `gb_all_final.fas`
+- MSA format (`--msa-format`) is set to `FASTA`;
+- Evolutionary model and partitions (`--model`) provided in the file `cat_partitions.txt`;
+- Bootstrap analysis (`--bs-trees`) set to automatic Bootstopping (`autoMRE`) up to `500` replicates;
+- Bootstrap support metric (`--bs-metric`) computed using 'Transfer Bootstrap Expectation' (`TBE`);
+- Seed set to `12345`.
+
 **IMPORTANT**: The code below is running the binary from the downloaded file. In order to run the binary installed via Conda, remove the path `/mnt/c/Ubuntu/` from the code.
+
+**IMPORTANT**: Edit the code into a single line, removing paragraph breaks and backslahes (`\`).
 ```
-/mnt/c/Ubuntu/raxml-ng/raxml-ng --msa gb_all_final.fas --msa-format FASTA --seed 12345 --model cat_partitions.txt --all --bs-trees autoMRE{500} --bs-metric TBE
+/mnt/c/Ubuntu/raxml-ng/raxml-ng --all \
+  --msa gb_all_final.fas \
+  --msa-format FASTA \
+  --model cat_partitions.txt \
+  --bs-trees autoMRE{500} \
+  --bs-metric TBE
+  --seed 12345
 ```
 
+
+Run [***Trimmomatic***](https://github.com/usadellab/Trimmomatic) using the settings:
+
+- Using pair-end sequences (PE), 8 threads (-threads 8), quality scores Phred+33 (-phred33);
+- Replace sequence file names and locations on the R1 and R2 sequence files and corresponding paired and unpaired output files;
+- Trimming TruSeq3 PE adpaters (see manual for others, such as Nextera adapters (NexteraPE-PE.fa);
+- Removing 3 bases at start (LEADING:3) and end (TRAILING:3);
+- Removing low quality bases using 4 base average of sliding window with qualiity 20 (SLIDINGWINDOW:4:20);
+- Discarding reads shorter than 50 bp (MINLEN:50).
+
+
+  
 
