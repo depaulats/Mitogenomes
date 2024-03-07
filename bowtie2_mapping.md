@@ -29,6 +29,8 @@ Run ***bowtie2*** with the following settings:
 - Use the reference genome (`-x`) in the index `/path-to-index/index-name`;
 - Use as input the paired reads R1 (`-1`) and R2 (`-2`) in the FASTQ files `/path-to-input/R1-file.fastq` and R2 `/path-to-input/R2-file.fastq`, respectively;
 - Save the output file (`-S`) in the SAM file `/path-to-output/output-file.sam`.
+
+**IMPORTANT**: Edit the code into a single line, removing paragraph breaks and backslahes.
 ```
 bowtie2 --local --fr \
   -x /path-to-index/index-name \
