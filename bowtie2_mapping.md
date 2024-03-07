@@ -1,7 +1,7 @@
 # Mapping reads using Bowtie2
 
 ## Installing essential softwares
-If you haven't yet, install Bowtie2 and Samtools via Conda from `<base>`. 
+If you haven't yet, install [***Bowtie2***](https://github.com/BenLangmead/bowtie2) and [***Samtools***](https://github.com/samtools/samtools) via Conda from `<base>`. 
 ```
 conda create --name bowtie2
 conda activate bowtie2
@@ -14,27 +14,57 @@ conda deactivate
 ```
 
 ## Mapping reads to a reference
-Run ***bowtie2-build*** to creating an indexed reference genome for the local alignment.
+Activate the `<bowtie2>` environment.
 ```
 conda activate bowtie2
+```
+
+Run ***bowtie2-build*** to creating an indexed reference genome for the local alignment.
+```
 bowtie2-build /path-to-file/fasta-file.fas /path-to-index/index-name
 ```
 
-Run ***bowtie2*** to local aligning pair-end reads to the indexed reference genome.
+Run ***bowtie2*** to local aligning pair-end reads to the indexed reference genome with the following settings:
+-
+-
+
 ```
 bowtie2 --fr --local -x /path-to-index/index-name -1 /path-to-input/R1-file.fastq -2 /path-to-input/R2-file.fastq -S /path-to-output/output-file.sam
+```
+
+Deactivate the environment, returning to `<base>`.
+```
 conda deactivate
 ```
 
 
-## Converting a SAM file to a BAM file using samtools (remember to move to <samtools> environment using $ conda activate samtools)
+## Recovering mapped reads
+Activate the `<samtools>` environment.
+```
+conda activate samtools
+```
+
+Convert the SAM file to a BAM file.
+```
 samtools view -b -S /path-to-input/input-file.sam -o /path-to-output/output-file.bam
+```
 
-## Extracting mapped reads from a BAM file using samtools (remember to move to <samtools> environment using $ conda activate samtools)
+Extract mapped reads from the BAM file.
+```
 samtools view -b -F 4 /path-to-input/input-file.sam > /path-to-output/output-file_mapped.bam
+```
 
-## Sorting mapped reads in a BAM file using samtools (remember to move to <samtools> environment using $ conda activate samtools)
+Sort the mapped reads in the BAM file.
+```
 samtools sort /path-to-input/input-file_mapped.bam > /path-to-output/output-file_mapped_sorted.bam
+```
 
-## Creating an index for the sorted reads in a BAM file using samtools (remember to move to <samtools> environment using $ conda activate samtools)
+Creat an index for the sorted reads in the BAM file.
+```
 samtools index /path-to-input/input-file_mapped_sorted.bam > /path-to-output/output-file_mapped_sorted.bai
+```
+
+Deactivate the environment, returning to `<base>`.
+```
+conda deactivate
+```
