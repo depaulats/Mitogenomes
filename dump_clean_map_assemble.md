@@ -1,6 +1,33 @@
-# Cleaning and trimming raw reads
+# 
 
-If needed, deactivate current environment and activate the environment to use the *Trimmomatic* software.
+## Download reads from the Sequence Read Archive (SRA)
+If needed, deactivate current environment and activate the environment to use the [***SRA Tools***](https://github.com/ncbi/sra-tools) package .
+
+```
+conda deactivate
+conda activate sratools
+```
+
+Run *fasterq-dump* using the settings:
+- Retrieve FASTQ files from the run `SRA0000000`;
+- Save output (`-O`) in the folder `/mnt/c/Ubuntu/Sample_folder/`;
+- Keep R1 and R2 reads in different files (`--split-files`);
+- Use `8` logical processors (`--threads`);
+- Show progress bar (`--threads`).
+
+```
+fasterq-dump SRA0000000 -O /mnt/c/Ubuntu/Sample_folder/ --split-files --threads 8 --progress
+```
+
+Compress your FASTQ files to save space.
+```
+gzip /mnt/c/Ubuntu/Sample_folder/SRA0000000_1.fastq
+gzip /mnt/c/Ubuntu/Sample_folder/SRA0000000_1.fastq
+```
+
+## Cleaning and trimming raw reads
+
+If needed, deactivate current environment and activate the environment to use the [***Trimmomatic***](https://github.com/usadellab/Trimmomatic) software.
 
 ```
 conda deactivate
@@ -8,7 +35,7 @@ conda activate trimmomatic
 ```
 
 \
-Run [***Trimmomatic***](https://github.com/usadellab/Trimmomatic) using the settings:
+Run *trimmomatic* using the settings:
 
 - Using pair-end sequences (`PE`), 8 threads (`-threads 8`), quality scores Phred+33 (`-phred33`);
 - Input R1 and R2 sequence files (with /path/) and corresponding paired and unpaired output files;
@@ -34,8 +61,8 @@ trimmomatic PE -threads 8 -phred33 \
 ```
 
 
-# Mapping reads
-If needed, deactivate current environment and activate the environment to use the *BBMap* package.
+## Mapping reads
+If needed, deactivate current environment and activate the environment to use the [***BBMap***](https://github.com/BioInfoTools/BBMap) package.
 
 ```
 conda deactivate
@@ -43,7 +70,7 @@ conda activate megahit
 ```
 
 \
-Run [***BBMap***](https://github.com/BioInfoTools/BBMap) with to following settings:
+Run *bbmap.sh* with to following settings:
 
 - Using a specific FASTA file as reference (ref=file) without index (`nodisk`);
 - Using as input the paired reads R! (`in1=file`) and R2 (`in2=file`) files;
@@ -62,8 +89,8 @@ Run [***BBMap***](https://github.com/BioInfoTools/BBMap) with to following setti
 ```
 
 
-# Assembling reads
-If needed, deactivate current environment and activate the environment to use the *Megahit* software.
+## Assembling reads
+If needed, deactivate current environment and activate the environment to use the [***Megahit***](https://github.com/voutcn/megahit) software.
 
 ```
 conda deactivate
@@ -71,7 +98,7 @@ conda activate megahit
 ```
 
 \
-Run [***Megahit***](https://github.com/voutcn/megahit) with the following settings:
+Run *megahit* with the following settings:
 
 - Using an interleaved file as input (`--12 file`);
 - Saving output files in a specific directory (`--out-dir directory`).
