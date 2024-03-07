@@ -42,7 +42,7 @@ conda deactivate
 ```
 
 ## Assembly of reads (mapped or *de novo*)
-Creating and activating an environment, and installing [***Megahit***](https://github.com/voutcn/megahit) packaages at `<megahit>`
+Creating and activating an environment, and installing [***Megahit***](https://github.com/voutcn/megahit) packages at `<megahit>`
 ```
 conda create --name megahit
 conda activate megahit
@@ -76,16 +76,20 @@ Deactivating the environment, returning to `<base>`
 conda deactivate
 ```
 
-Creating and activating an environment, and installing [***Bowtie2***](https://github.com/BenLangmead/bowtie2) packaages at `<bowtie2>`
+Creating and activating an environment, and installing [***Bowtie2***](https://github.com/BenLangmead/bowtie2) packages at `<bowtie2>`
 ```
 conda create --name bowtie2
 conda activate bowtie2
 conda install -c bioconda bowtie2
 ```
 
+Deactivating the environment, returning to `<base>`
+```
+conda deactivate
+```
 
 ## Handling files with mapped reads and variant calls
-Creating and activating an environment, and installing [***Samtools***](https://github.com/samtools/samtools) packaages at `<samtools>`
+Creating and activating an environment, and installing [***Samtools***](https://github.com/samtools/samtools) packages at `<samtools>`
 ```
 conda create --name samtools
 conda activate samtools
