@@ -24,12 +24,17 @@ Run ***bowtie2-build*** to creating an indexed reference genome for the local al
 bowtie2-build /path-to-file/fasta-file.fas /path-to-index/index-name
 ```
 
-Run ***bowtie2*** to local aligning pair-end reads to the indexed reference genome with the following settings:
--
--
-
+Run ***bowtie2*** with the following settings:
+- Run a local alignment of reads (`--local`) where R1 appears upstream of the reverse complement of R2 (`--fr`);
+- Use the reference genome (`-x`) in the index `/path-to-index/index-name`;
+- Use as input the paired reads R1 (`-1`) and R2 (`-2`) in the FASTQ files `/path-to-input/R1-file.fastq` and R2 `/path-to-input/R2-file.fastq`, respectively;
+- Save the output file (`-S`) in the SAM file `/path-to-output/output-file.sam`.
 ```
-bowtie2 --fr --local -x /path-to-index/index-name -1 /path-to-input/R1-file.fastq -2 /path-to-input/R2-file.fastq -S /path-to-output/output-file.sam
+bowtie2 --local --fr \
+  -x /path-to-index/index-name \
+  -1 /path-to-input/R1-file.fastq \
+  -2 /path-to-input/R2-file.fastq \
+  -S /path-to-output/output-file.sam
 ```
 
 Deactivate the environment, returning to `<base>`.
