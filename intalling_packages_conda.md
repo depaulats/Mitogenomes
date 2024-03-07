@@ -55,24 +55,34 @@ conda deactivate
 ```
 
 ## Mapping reads to a reference
-Creating and moving to a working directory in the root of system driver (in Windows `C:\`, in Linux `/mnt/c/`), for ease of use.
+
+Downloading and extracting [***BBMap***](https://sourceforge.net/projects/bbmap/) to a working directory (in Windows `C:\`, in Linux `/mnt/c/`). Mind the version of the software in the code.
 ```
 mkdir /mnt/c/Ubuntu
 cd /mnt/c/Ubuntu
-```
-
-Downloading and extracting [***BBMap***](https://sourceforge.net/projects/bbmap/) to the working directory. Mind the version of the software in the code.
-```
 wget https://sourceforge.net/projects/bbmap/files/BBMap_39.06.tar.gz
 tar -zxvf BBMap_39.06.tar.gz -C /mnt/c/Ubuntu/
 rm BBMap_39.06.tar.gz
 ```
 
-Installing [***Open JDK***](https://github.com/openjdk/) to run BBMap in a environment of choice, such as `<megahit>`.
+Installing [***Open JDK***](https://github.com/openjdk/) to run ***BBMap*** in a environment of choice, such as `<megahit>`.
 ```
 conda activate megahit
 conda install -c bioconda java-jdk
 ```
+
+Deactivating the environment, returning to `<base>`
+```
+conda deactivate
+```
+
+Creating and activating an environment, and installing [***Bowtie2***](https://github.com/BenLangmead/bowtie2) packaages at `<bowtie2>`
+```
+conda create --name bowtie2
+conda activate bowtie2
+conda install -c bioconda bowtie2
+```
+
 
 ## Handling files with mapped reads and variant calls
 Creating and activating an environment, and installing [***Samtools***](https://github.com/samtools/samtools) packaages at `<samtools>`
