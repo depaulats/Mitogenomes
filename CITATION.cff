@@ -1,0 +1,10 @@
+cff-version: 1.1.0
+message: "If you use these commands and scripts, please consider citing them as below."
+authors:
+- family-names: de Paula
+  given-names: Thiago
+orcid: https://orcid.org/0000-0003-4468-4996
+title:depaulats/Mitogenomes: v.2024.1
+version: v.2024.1
+date-released: 2024-08-06
+                                
