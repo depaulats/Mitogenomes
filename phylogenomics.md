@@ -305,6 +305,12 @@ seqkit replace -p "(.+)" -r '{kv}' -k gb_names.txt gb_all_accession.fas > gb_all
 ```
 
 \
+If you want to create a new matrix, with a subset of the sequences in the alingment, for instance, removing some outgroups, you will need a list of the sequence headers you want to keep from the original alignment.
+```
+seqtk subseq input_file.fasta headers_tokeep.txt > output_file.fasta
+```
+
+\
 Now you retrieved the final matrix, it is safe to remove the temporary files in the 'genes' folder.
 
 **IMPORTANT**: You can always generate them again starting from [here](#splitting-data-for-individual-gene-aligment).
