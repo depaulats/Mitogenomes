@@ -90,13 +90,16 @@ Run *bbmap.sh* with to following settings:
 
 Generate statiscts for raw, filtered, and mapped reads. Assuming [***SeqKit***](https://bioinf.shenwei.me/seqkit/) is installed at <base>.
 
+**IMPORTANT**: Edit the code into a single line, removing paragraph breaks and backslahes.
+
 ```
 conda deactivate
-seqkit stats -a /mnt/c/Ubuntu/Sample_folder/Sample_file_R1.fastq.gz
-seqkit stats -a /mnt/c/Ubuntu/Sample_folder/Sample_file_R2.fastq.gz
-seqkit stats -a /mnt/c/Ubuntu/Sample_folder/Sample_file_R1_paired.fastq.gz
-seqkit stats -a /mnt/c/Ubuntu/Sample_folder/Sample_file_R2_paired.fastq.gz
-seqkit stats -a /mnt/c/Ubuntu/Sample_folder/Sample_file_mapped_data.fastq
+seqkit stats -a \
+  /mnt/c/Ubuntu/Sample_folder/Sample_file_R1.fastq.gz \
+  /mnt/c/Ubuntu/Sample_folder/Sample_file_R2.fastq.gz \
+  /mnt/c/Ubuntu/Sample_folder/Sample_file_R1_paired.fastq.gz \
+  /mnt/c/Ubuntu/Sample_folder/Sample_file_R2_paired.fastq.gz \
+  /mnt/c/Ubuntu/Sample_folder/Sample_file_mapped_data.fastq
 ```
 
 
