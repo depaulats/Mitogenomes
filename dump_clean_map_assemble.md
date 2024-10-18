@@ -44,7 +44,7 @@ Run *trimmomatic* using the settings:
 - Removing low quality bases using 4 base average of sliding window with qualiity 20 (`SLIDINGWINDOW:4:20`);
 - Discarding reads shorter than 50 bp (`MINLEN:50`).
 
-**IMPORTANT**: Edit the code into a single line, removing paragraph breaks and backslahes.
+**IMPORTANT**: Edit the code into a single line, removing paragraph breaks and backslahes (\).
   
 ```
 trimmomatic PE -threads 8 -phred33 \
@@ -77,8 +77,8 @@ Run *bbmap.sh* with to following settings:
 - Recording only the mapped reads (`mappedonly=t`);
 - Saving an output file with interleaved mapped reads (`out=file`).
 
-**IMPORTANT**: Edit the code into a single line, removing paragraph breaks and backslahes.
-  
+**IMPORTANT**: Edit the code into a single line, removing paragraph breaks and backslahes (\).
+
 ```
 /mnt/c/Ubuntu/bbmap/bbmap.sh \
   ref=/mnt/c/Ubuntu/reference.fasta nodisk \
@@ -87,21 +87,6 @@ Run *bbmap.sh* with to following settings:
   mappedonly=t \
   out=/mnt/c/Ubuntu/Sample_folder/Sample_file_mapped_data.fastq
 ```
-
-Generate statiscts for raw, filtered, and mapped reads. Assuming [***SeqKit***](https://bioinf.shenwei.me/seqkit/) is installed at <base>.
-
-**IMPORTANT**: Edit the code into a single line, removing paragraph breaks and backslahes.
-
-```
-conda deactivate
-seqkit stats -a \
-  /mnt/c/Ubuntu/Sample_folder/Sample_file_R1.fastq.gz \
-  /mnt/c/Ubuntu/Sample_folder/Sample_file_R2.fastq.gz \
-  /mnt/c/Ubuntu/Sample_folder/Sample_file_R1_paired.fastq.gz \
-  /mnt/c/Ubuntu/Sample_folder/Sample_file_R2_paired.fastq.gz \
-  /mnt/c/Ubuntu/Sample_folder/Sample_file_mapped_data.fastq
-```
-
 
 ## Assembling reads
 If needed, deactivate current environment and activate the environment to use the [***Megahit***](https://github.com/voutcn/megahit) software.
@@ -117,9 +102,30 @@ Run *megahit* with the following settings:
 - Using an interleaved file as input (`--12 file`);
 - Saving output files in a specific directory (`--out-dir directory`).
 
-**IMPORTANT**: Edit it into a single line, removing paragraph breaks and backslahes.
+**IMPORTANT**: Edit the code into a single line, removing paragraph breaks and backslahes (\).
   
 ```
 megahit --12 /mnt/c/Ubuntu/Sample_folder/Sample_file_mapped_data.fastq \
   --out-dir /mnt/c/Sample_folder/Sample_file_mapped_data
+```
+
+## Reads statistics
+If needed, deactivate current environment to use the [***SeqKit***](https://bioinf.shenwei.me/seqkit/) package at <base>.
+
+```
+conda deactivate
+```
+
+\
+Generate statiscts for raw, filtered, and mapped reads. 
+
+**IMPORTANT**: Edit the code into a single line, removing paragraph breaks and backslahes (\).
+
+```
+seqkit stats -a \
+  /mnt/c/Ubuntu/Sample_folder/Sample_file_R1.fastq.gz \
+  /mnt/c/Ubuntu/Sample_folder/Sample_file_R2.fastq.gz \
+  /mnt/c/Ubuntu/Sample_folder/Sample_file_R1_paired.fastq.gz \
+  /mnt/c/Ubuntu/Sample_folder/Sample_file_R2_paired.fastq.gz \
+  /mnt/c/Ubuntu/Sample_folder/Sample_file_mapped_data.fastq
 ```
