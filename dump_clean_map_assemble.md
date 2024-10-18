@@ -88,6 +88,17 @@ Run *bbmap.sh* with to following settings:
   out=/mnt/c/Ubuntu/Sample_folder/Sample_file_mapped_data.fastq
 ```
 
+Generate statiscts for raw, filtered, and mapped reads. Assuming [***SeqKit***](https://bioinf.shenwei.me/seqkit/) is installed at <base>.
+
+```
+conda deactivate
+seqkit stats -a /mnt/c/Ubuntu/Sample_folder/Sample_file_R1.fastq.gz
+seqkit stats -a /mnt/c/Ubuntu/Sample_folder/Sample_file_R2.fastq.gz
+seqkit stats -a /mnt/c/Ubuntu/Sample_folder/Sample_file_R1_paired.fastq.gz
+seqkit stats -a /mnt/c/Ubuntu/Sample_folder/Sample_file_R2_paired.fastq.gz
+seqkit stats -a /mnt/c/Ubuntu/Sample_folder/Sample_file_mapped_data.fastq
+```
+
 
 ## Assembling reads
 If needed, deactivate current environment and activate the environment to use the [***Megahit***](https://github.com/voutcn/megahit) software.
