@@ -58,7 +58,7 @@ samtools view -b -S /path-to-input/input-file.sam -o /path-to-output/output-file
 
 Extract mapped reads from the BAM file.
 ```
-samtools view -b -F 4 /path-to-input/input-file.sam > /path-to-output/output-file_mapped.bam
+samtools view -b -F 4 /path-to-input/input-file.bam > /path-to-output/output-file_mapped.bam
 ```
 
 Sort the mapped reads in the BAM file.
